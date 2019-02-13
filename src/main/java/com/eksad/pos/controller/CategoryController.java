@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -38,6 +39,19 @@ public class CategoryController {
 			log.debug(e.getMessage(),e);
 			result = new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
 		}		
+		return result;
+	}
+	
+	@RequestMapping(value="/api/category/search/{katakunci}",method=RequestMethod.GET)
+	public ResponseEntity<List<CategoryModel>> search(@PathVariable("katakunci") String cari){
+		ResponseEntity<List<CategoryModel>> result = null;
+		try {
+			List<CategoryModel> list = this.service.search(cari);
+			result = new ResponseEntity<List<CategoryModel>>(list,HttpStatus.OK);
+		} catch (Exception err) {
+			log.debug(err.getMessage(),err);
+			result = new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		return result;
 	}
 }

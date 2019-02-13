@@ -40,4 +40,9 @@ public class CategoryServiceImpl implements CategoryService {
 	public void delete(CategoryModel model) {
 		this.dao.delete(model);
 	}
+
+	@Override
+	public List<CategoryModel> search(String key) {
+		return this.dao.search(key);
+	}
 }
