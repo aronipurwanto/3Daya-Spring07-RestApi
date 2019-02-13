@@ -1,8 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator"%>
-<%
-	request.setAttribute("contextName", request.getServletContext().getContextPath());
-%>
+<% request.setAttribute("contextName", request.getServletContext().getContextPath()); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +27,7 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="${contextName}/resources/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script src="${contextName}/resources/dist/js/map-form-object.js"></script>
 <decorator:head />
 </head>
 

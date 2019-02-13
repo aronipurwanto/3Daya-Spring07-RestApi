@@ -24,10 +24,23 @@ public class CategoryController {
 	@Autowired
 	private CategoryService service;
 	
-	@RequestMapping(value="/category/index")
-	public String index(Model model){
-		List<CategoryModel> list = this.service.getList();
-		model.addAttribute("list",list);
+	@RequestMapping(value="/category")
+	public String index(){
 		return "/category/index";
+	}
+	
+	@RequestMapping(value="/category/create")
+	public String create(){
+		return "/category/create";
+	}
+	
+	@RequestMapping(value="/category/edit")
+	public String edit(){
+		return "/category/edit";
+	}
+	
+	@RequestMapping(value="/category/delete")
+	public String delete(){
+		return "/category/delete";
 	}
 }
