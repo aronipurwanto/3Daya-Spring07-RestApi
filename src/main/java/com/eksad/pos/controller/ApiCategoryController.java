@@ -19,7 +19,7 @@ import com.eksad.pos.model.CategoryModel;
 import com.eksad.pos.service.CategoryService;
 
 @Controller
-public class CategoryController {
+public class ApiCategoryController {
 	private Log log = LogFactory.getLog(getClass());
 	@Autowired
 	private CategoryService service;
