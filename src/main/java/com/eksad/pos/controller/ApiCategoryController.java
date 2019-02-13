@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +38,7 @@ public class ApiCategoryController {
 			result = new ResponseEntity<List<CategoryModel>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			log.debug(e.getMessage(),e);
-			result = new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+			result = new ResponseEntity<List<CategoryModel>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}		
 		return result;
 	}
@@ -57,8 +56,8 @@ public class ApiCategoryController {
 		return result;
 	}
 	
-	@RequestMapping(value="/api/category/{catId}",method=RequestMethod.GET)
-	public ResponseEntity<CategoryModel> getById(@PathVariable("catId") int vId){
+	@RequestMapping(value="/api/category/{itemId}",method=RequestMethod.GET)
+	public ResponseEntity<CategoryModel> getById(@PathVariable("itemId") int vId){
 		ResponseEntity<CategoryModel> result = null;
 		try {
 			CategoryModel cat = this.service.getById(vId);
@@ -96,8 +95,8 @@ public class ApiCategoryController {
 		return result;
 	}
 	
-	@RequestMapping(value="/api/category/{catId}", method=RequestMethod.DELETE)
-	public ResponseEntity<CategoryModel> delApi(@PathVariable("catId") Integer vid){
+	@RequestMapping(value="/api/category/{itemId}", method=RequestMethod.DELETE)
+	public ResponseEntity<CategoryModel> delApi(@PathVariable("itemId") Integer vid){
 		ResponseEntity<CategoryModel> result = null;
 		try {
 			CategoryModel item = this.service.getById(vid);

@@ -18,19 +18,19 @@ import com.eksad.pos.model.PackageModel;
 import com.eksad.pos.service.PackageService;
 
 @Controller
-public class ApiPackageController {
+public class ApiProductController {
 	private Log log = LogFactory.getLog(getClass());
 	@Autowired
 	private PackageService service;
 	
-	@RequestMapping(value="/package/index")
+	@RequestMapping(value="/product/index")
 	public String index(Model model){
 		List<PackageModel> list = this.service.getList();
 		model.addAttribute("list",list);
-		return "/package/index";
+		return "/product/index";
 	}
 	
-	@RequestMapping(value="/api/package/", method=RequestMethod.GET)
+	@RequestMapping(value="/api/product/", method=RequestMethod.GET)
 	public ResponseEntity<List<PackageModel>> list(){
 		ResponseEntity<List<PackageModel>> result = null;
 		try {
@@ -43,7 +43,7 @@ public class ApiPackageController {
 		return result;
 	}
 	
-	@RequestMapping(value="/api/package/search/{katakunci}",method=RequestMethod.GET)
+	@RequestMapping(value="/api/product/search/{katakunci}",method=RequestMethod.GET)
 	public ResponseEntity<List<PackageModel>> search(@PathVariable("katakunci") String cari){
 		ResponseEntity<List<PackageModel>> result = null;
 		try {
@@ -56,7 +56,7 @@ public class ApiPackageController {
 		return result;
 	}
 	
-	@RequestMapping(value="/api/package/{itemId}",method=RequestMethod.GET)
+	@RequestMapping(value="/api/product/{itemId}",method=RequestMethod.GET)
 	public ResponseEntity<PackageModel> getById(@PathVariable("itemId") int vId){
 		ResponseEntity<PackageModel> result = null;
 		try {
@@ -69,7 +69,7 @@ public class ApiPackageController {
 		return result;
 	}
 	
-	@RequestMapping(value="/api/package/", method=RequestMethod.POST)
+	@RequestMapping(value="/api/product/", method=RequestMethod.POST)
 	public ResponseEntity<PackageModel> postInsert(@RequestBody PackageModel item){
 		ResponseEntity<PackageModel> result = null;
 		try {
@@ -82,7 +82,7 @@ public class ApiPackageController {
 		return result;
 	}
 	
-	@RequestMapping(value="/api/package/", method=RequestMethod.PUT)
+	@RequestMapping(value="/api/product/", method=RequestMethod.PUT)
 	public ResponseEntity<PackageModel> putUpdate(@RequestBody PackageModel item){
 		ResponseEntity<PackageModel> result = null;
 		try {
@@ -95,7 +95,7 @@ public class ApiPackageController {
 		return result;
 	}
 	
-	@RequestMapping(value="/api/package/{itemId}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/api/product/{itemId}", method=RequestMethod.DELETE)
 	public ResponseEntity<PackageModel> delApi(@PathVariable("itemId") Integer vid){
 		ResponseEntity<PackageModel> result = null;
 		try {
