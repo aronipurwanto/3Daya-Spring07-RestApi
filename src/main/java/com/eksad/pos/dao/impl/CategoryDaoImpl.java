@@ -23,7 +23,7 @@ public class CategoryDaoImpl implements CategoryDao {
 		Session session = sessionFactory.getCurrentSession();
 		// HQl => Hibernate Query language
 		// Hibernate => ORM ( Object Relation Mapping )
-		String hql = "select jt from CategoryModel jt";
+		String hql = "select jt from CategoryModel jt order by jt.code";
 		Query query = session.createQuery(hql);
 		List<CategoryModel> result = query.getResultList();
 		return result;
@@ -60,7 +60,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	@Override
 	public List<CategoryModel> search(String key) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select x from CategoryModel x where x.name like :keySearch";
+		String hql = "select x from CategoryModel x where x.name like :keySearch order by x.code";
 		Query query = session.createQuery(hql);
 		query.setParameter("keySearch", "%"+key+"%");		
 		return query.getResultList();

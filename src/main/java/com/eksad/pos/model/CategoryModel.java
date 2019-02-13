@@ -2,14 +2,19 @@ package com.eksad.pos.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
 @Table(name="category")
 public class CategoryModel {
 	@Id
-	@Column(name="id")
+	@Column(name = "id", columnDefinition = "serial")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "category_seq")
+	@TableGenerator(name = "category_seq", table = "tbl_squence", pkColumnName = "seq_id", valueColumnName = "seq_value", initialValue = 0, allocationSize = 1)
 	private Integer id;
 	
 	@Column(name="category_code")
