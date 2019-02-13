@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,7 +21,14 @@ public class CategoryController {
 	@Autowired
 	private CategoryService service;
 	
-	@RequestMapping(value="/category/list", method=RequestMethod.GET)
+	@RequestMapping(value="/category/index")
+	public String index(Model model){
+		List<CategoryModel> list = this.service.getList();
+		model.addAttribute("list",list);
+		return "/category/index";
+	}
+	
+	@RequestMapping(value="/api/category/list", method=RequestMethod.GET)
 	public ResponseEntity<List<CategoryModel>> list(){
 		ResponseEntity<List<CategoryModel>> result = null;
 		try {
