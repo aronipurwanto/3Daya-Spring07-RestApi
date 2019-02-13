@@ -54,4 +54,17 @@ public class CategoryController {
 		}
 		return result;
 	}
+	
+	@RequestMapping(value="/api/category/get/{catId}")
+	public ResponseEntity<CategoryModel> getById(@PathVariable("catId") int vId){
+		ResponseEntity<CategoryModel> result = null;
+		try {
+			CategoryModel cat = this.service.getById(vId);
+			result = new ResponseEntity<CategoryModel>(cat,HttpStatus.OK);
+		} catch (Exception e) {
+			log.debug(e.getMessage(), e);
+			result = new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return result;
+	}
 }
