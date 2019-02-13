@@ -1,0 +1,4 @@
+src/test/
+target/classes/
+target/m2e-wtp/
+target/test-classes/log4j.xml
