@@ -1,7 +1,12 @@
 <!-- form mulai -->
 <form id="form-delete" class="form-horizontal">
 	<!-- id -->
-	<input type="hidden" name="id" id="id" />
+	<div class="form-group">
+		<label class="control-label col-md-2">ID</label>
+		<div class="col-md-10">
+			<input type="text" class="form-control" name="id" id="id" readonly="readonly" />
+		</div>
+	</div>
 	
 	<!-- code -->
 	<div class="form-group">

@@ -114,6 +114,25 @@
 		console.log(dataForm);
 	}
 	
+	// function get data 
+	function getData(dataId){
+		// panggil API
+		$.ajax({
+			// url ke api/category/
+			url:'${contextName}/api/category/'+dataId,
+			type:'get',
+			// data type berupa JSON
+			dataType:'json',
+			success : function(dataApi){
+				$('#modal-data').find('#id').val(dataApi.id);
+				$('#modal-data').find('#code').val(dataApi.code);
+				$('#modal-data').find('#name').val(dataApi.name);
+				
+				console.log(dataApi);
+			}
+		});
+	}
+	
 	// ketidak btn-edit di click
 	$('#list-data').on('click','.btn-edit', function(){
 		var vid = $(this).val();
@@ -123,32 +142,18 @@
 			dataType:'html',
 			success : function(result){
 				//mengganti judul modal
-				$("#modal-title").html("Add New Category");
+				$("#modal-title").html("Edit Data Category");
 				//mengisi content dengan variable result
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
 				$("#modal-form").modal('show');
-				
-				// panggil API
-				$.ajax({
-					// url ke api/category/
-					url:'${contextName}/api/category/'+vid,
-					type:'get',
-					// data type berupa JSON
-					dataType:'json',
-					success : function(dataApi){
-						$('#modal-data').find('#id').val(dataApi.id);
-						$('#modal-data').find('#code').val(dataApi.code);
-						$('#modal-data').find('#name').val(dataApi.name);
-						
-						console.log(dataApi);
-					}
-				});
+				// panggil method getData
+				getData(vid);
 			}
 		});
 	});
 	
-	// method untuk add data
+	// method untuk delete data
 	function editData($form){
 		// memangil method getFormData dari file
 		// resources/dist/js/map-form-objet.js
@@ -157,6 +162,71 @@
 			// url ke api/category/
 			url:'${contextName}/api/category/',
 			type:'put',
+			// data type berupa JSON
+			dataType:'json',
+			// mengirim parameter data
+			data:JSON.stringify(dataForm),
+			// mime type 
+			contentType: 'application/json',
+			success : function(result){
+				//menutup modal
+				$("#modal-form").modal('hide');
+				// panggil method load data, untuk melihat data terbaru
+				loadData();
+			}
+		});
+		console.log(dataForm);
+	}
+	
+	// ketidak btn-detail di click
+	$('#list-data').on('click','.btn-detail', function(){
+		var vid = $(this).val();
+		$.ajax({
+			url:'${contextName}/category/edit',
+			type:'get',
+			dataType:'html',
+			success : function(result){
+				//mengganti judul modal
+				$("#modal-title").html("Detail Data Category");
+				//mengisi content dengan variable result
+				$("#modal-data").html(result);
+				//menampilkan modal pop up
+				$("#modal-form").modal('show');
+				//panggil method
+				getData(vid);
+			}
+		});
+	});
+	
+	// ketidak btn-delete di click
+	$('#list-data').on('click','.btn-delete', function(){
+		var vid = $(this).val();
+		$.ajax({
+			url:'${contextName}/category/edit',
+			type:'get',
+			dataType:'html',
+			success : function(result){
+				//mengganti judul modal
+				$("#modal-title").html("Delete Data Category");
+				//mengisi content dengan variable result
+				$("#modal-data").html(result);
+				//menampilkan modal pop up
+				$("#modal-form").modal('show');
+				//panggil method
+				getData(vid);
+			}
+		});
+	});
+	
+	// method untuk delete data
+	function deleteData($form){
+		// memangil method getFormData dari file
+		// resources/dist/js/map-form-objet.js
+		var dataForm = getFormData($form);
+		$.ajax({
+			// url ke api/category/
+			url:'${contextName}/api/category/',
+			type:'delete',
 			// data type berupa JSON
 			dataType:'json',
 			// mengirim parameter data
