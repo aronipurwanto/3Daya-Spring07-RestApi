@@ -14,7 +14,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<button type="button" onClick="addData($('#form-create'))" class="btn btn-primary">Simpan</button>
+		<button type="button" onClick="addData($('#form-create'))" class="btn btn-primary pull-left">Simpan</button>
 		<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 	</div>
 </form>

@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-primary" onClick="editData($('#form-edit'))">Simpan</button>
+		<button type="button" class="btn btn-success pull-left" onClick="editData($('#form-edit'))">Simpan</button>
 		<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 	</div>
 </form>

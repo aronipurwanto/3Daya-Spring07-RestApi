@@ -43,4 +43,9 @@ public class CategoryController {
 	public String delete(){
 		return "/category/delete";
 	}
+	
+	@RequestMapping(value="/category/detail")
+	public String detail(){
+		return "/category/detail";
+	}
 }

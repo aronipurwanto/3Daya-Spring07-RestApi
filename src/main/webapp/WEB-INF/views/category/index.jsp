@@ -182,7 +182,7 @@
 	$('#list-data').on('click','.btn-detail', function(){
 		var vid = $(this).val();
 		$.ajax({
-			url:'${contextName}/category/edit',
+			url:'${contextName}/category/detail',
 			type:'get',
 			dataType:'html',
 			success : function(result){
@@ -202,7 +202,7 @@
 	$('#list-data').on('click','.btn-delete', function(){
 		var vid = $(this).val();
 		$.ajax({
-			url:'${contextName}/category/edit',
+			url:'${contextName}/category/delete',
 			type:'get',
 			dataType:'html',
 			success : function(result){
@@ -221,26 +221,23 @@
 	// method untuk delete data
 	function deleteData($form){
 		// memangil method getFormData dari file
-		// resources/dist/js/map-form-objet.js
-		var dataForm = getFormData($form);
+		var vid = $form.find("#id").val();
 		$.ajax({
 			// url ke api/category/
-			url:'${contextName}/api/category/',
+			url:'${contextName}/api/category/'+vid,
+			// method http di controller
 			type:'delete',
 			// data type berupa JSON
 			dataType:'json',
-			// mengirim parameter data
-			data:JSON.stringify(dataForm),
-			// mime type 
-			contentType: 'application/json',
+			// jika sukses
 			success : function(result){
 				//menutup modal
 				$("#modal-form").modal('hide');
 				// panggil method load data, untuk melihat data terbaru
 				loadData();
+				console.log(result);
 			}
 		});
-		console.log(dataForm);
 	}
 </script>
 

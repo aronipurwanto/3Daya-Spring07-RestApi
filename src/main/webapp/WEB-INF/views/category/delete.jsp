@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-primary" onClick="deleteData($('#form-delete'))">Simpan</button>
+		<button type="button" class="btn btn-danger pull-left" onClick="deleteData($('#form-delete'))">Simpan</button>
 		<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 	</div>
 </form>
