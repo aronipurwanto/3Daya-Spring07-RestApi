@@ -53,11 +53,17 @@
 			dataType:'html',
 			success : function(result){
 				//mengganti judul modal
-				$("#modal-title").html("Add New Category");
+				$("#modal-title").html("Add New Product");
 				//mengisi content dengan variable result
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
 				$("#modal-form").modal('show');
+				
+				// call add category
+				loadCategory($("#modal-data"));
+				
+				// call add category
+				loadPackage($("#modal-data"));
 			}
 		});
 	});
@@ -78,7 +84,7 @@
 					var dataRow ='<tr>'+
 						'<td>'+ item.code +'</td>'+
 						'<td>'+ item.name+'</td>'+
-						'<td>'+ item.packageId+'</td>'+
+						'<td>'+ item.packagesId+'</td>'+
 						'<td>'+ item.categoryId+'</td>'+
 						'<td>'+ item.price+'</td>'+
 						'<td class="col-md-1">'+
@@ -91,6 +97,44 @@
 				});
 				// menampilkan data ke console => F12
 				console.log(result);
+			}
+		});
+	}
+	
+	function loadPackage($form){
+		$.ajax({
+			// url ke api/product/
+			url:'${contextName}/api/package/',
+			type:'get',
+			// data type berupa JSON
+			dataType:'json',
+			success : function(result){
+				// empty data first
+				$form.find("#packageId").empty();
+				$form.find("#packageId").append('<option value="">=Select Package=</option>');
+				// looping data
+				$.each(result, function(index, item){
+					$form.find("#packageId").append('<option value="'+ item.id +'">'+ item.code +' - '+ item.name +'</option>');
+				});
+			}
+		});
+	}
+	
+	function loadCategory($form){
+		$.ajax({
+			// url ke api/product/
+			url:'${contextName}/api/category/',
+			type:'get',
+			// data type berupa JSON
+			dataType:'json',
+			success : function(result){
+				// empty data first
+				$form.find("#categoryId").empty();
+				$form.find("#categoryId").append('<option value="">=Select Category=</option>');
+				// looping data
+				$.each(result, function(index, category){
+					$form.find("#categoryId").append('<option value="'+ category.id +'">'+ category.code +' - '+ category.name +'</option>');
+				});
 			}
 		});
 	}

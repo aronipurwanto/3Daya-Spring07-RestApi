@@ -17,7 +17,7 @@
 	<div class="form-group">
 		<label class="control-label col-md-2">Package</label>
 		<div class="col-md-10">
-			<select name="packageId" class="form-control">
+			<select name="packageId" class="form-control" id="packageId">
 				<option value="">=Select Package=</option>
 			</select>
 		</div>
@@ -26,7 +26,7 @@
 	<div class="form-group">
 		<label class="control-label col-md-2">Category</label>
 		<div class="col-md-10">
-			<select name="categoryId" class="form-control">
+			<select name="categoryId" class="form-control" id="categoryId">
 				<option value="">=Select Package=</option>
 			</select>
 		</div>
