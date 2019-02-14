@@ -36,10 +36,10 @@
 					<span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span>
 				</a>
 				<ul class="treeview-menu">
-					<li><a href="${contextName}/job-title"><i class="fa fa-circle-o"></i> Job Title</a></li>
-					<li><a href="${contextName}/department"><i class="fa fa-circle-o"></i> Deparment</a></li>
-					<li><a href="${contextName}/position"><i class="fa fa-circle-o"></i> Position</a></li>
-					<li><a href="${contextName}/employee"><i class="fa fa-circle-o"></i> Employee</a></li>
+					<li><a href="${contextName}/category"><i class="fa fa-circle-o"></i> Category</a></li>
+					<li><a href="${contextName}/package"><i class="fa fa-circle-o"></i> Pacakges</a></li>
+					<li><a href="${contextName}/product"><i class="fa fa-circle-o"></i> Product</a></li>
+					<li><a href="${contextName}/po"><i class="fa fa-circle-o"></i> Purchase Order</a></li>
 				</ul>
 			</li>		
 		</ul>

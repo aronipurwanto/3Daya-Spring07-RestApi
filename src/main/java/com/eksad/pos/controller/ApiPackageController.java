@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,13 +21,6 @@ public class ApiPackageController {
 	private Log log = LogFactory.getLog(getClass());
 	@Autowired
 	private PackageService service;
-	
-	@RequestMapping(value="/package/index")
-	public String index(Model model){
-		List<PackageModel> list = this.service.getList();
-		model.addAttribute("list",list);
-		return "/package/index";
-	}
 	
 	@RequestMapping(value="/api/package/", method=RequestMethod.GET)
 	public ResponseEntity<List<PackageModel>> list(){
