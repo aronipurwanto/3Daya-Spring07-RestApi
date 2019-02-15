@@ -3,14 +3,14 @@
 	<div class="form-group">
 		<label class="control-label col-md-2">Code</label>
 		<div class="col-md-10">
-			<input type="text" class="form-control" name="code" />
+			<input type="text" class="form-control" name="code" id="code" />
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="control-label col-md-2">Name</label>
 		<div class="col-md-10">
-			<input type="text" class="form-control" name="name" />
+			<input type="text" class="form-control" name="name" id="name" />
 		</div>
 	</div>
 	
@@ -35,7 +35,7 @@
 	<div class="form-group">
 		<label class="control-label col-md-2">Price</label>
 		<div class="col-md-10">
-			<input type="text" class="form-control" name="price" />
+			<input type="text" class="form-control" name="price" id="price" />
 		</div>
 	</div>
 	

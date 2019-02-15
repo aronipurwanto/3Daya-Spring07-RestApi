@@ -5,11 +5,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="product")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class ProductModel {
 	@Id
 	@Column(name = "id", columnDefinition = "serial")
@@ -31,6 +37,14 @@ public class ProductModel {
 	
 	@Column(name="price")
 	private Integer price;
+	
+	@ManyToOne
+	@JoinColumn(name="category_id", updatable=false, insertable=false)
+	private CategoryModel category;
+	
+	@ManyToOne
+	@JoinColumn(name="package_id", updatable=false, insertable=false)
+	private PackageModel packages;
 
 	public Integer getId() {
 		return id;
@@ -79,4 +93,22 @@ public class ProductModel {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+
+	public CategoryModel getCategory() {
+		return category;
+	}
+
+	public void setCategory(CategoryModel category) {
+		this.category = category;
+	}
+
+	public PackageModel getPackages() {
+		return packages;
+	}
+
+	public void setPackages(PackageModel packages) {
+		this.packages = packages;
+	}
+	
+	
 }

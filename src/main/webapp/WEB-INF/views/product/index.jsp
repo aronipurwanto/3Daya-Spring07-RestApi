@@ -28,7 +28,7 @@
 
 <div class="modal" id="modal-form">
 	<div class="modal-dialog">
-		<div class="box box-success">
+		<div class="box box-info">
 			<div class="box-header with-border">
 				<h3 class="box-title" id="modal-title">Form Input</h3>
 			</div>
@@ -60,10 +60,9 @@
 				$("#modal-form").modal('show');
 				
 				// call add category
-				loadCategory($("#modal-data"));
-				
+				loadCategory($("#modal-data"),0);
 				// call add category
-				loadPackage($("#modal-data"));
+				loadPackage($("#modal-data"),0);
 			}
 		});
 	});
@@ -84,8 +83,8 @@
 					var dataRow ='<tr>'+
 						'<td>'+ item.code +'</td>'+
 						'<td>'+ item.name+'</td>'+
-						'<td>'+ item.packagesId+'</td>'+
-						'<td>'+ item.categoryId+'</td>'+
+						'<td>'+ item.packages.code+'</td>'+
+						'<td>'+ item.category.name+'</td>'+
 						'<td>'+ item.price+'</td>'+
 						'<td class="col-md-1">'+
 							'<button type="button" class="btn btn-edit btn-warning btn-xs" value="'+ item.id +'"><i class="fa fa-edit"></i></button> '+
@@ -101,7 +100,7 @@
 		});
 	}
 	
-	function loadPackage($form){
+	function loadPackage($form, $selected){
 		$.ajax({
 			// url ke api/product/
 			url:'${contextName}/api/package/',
@@ -114,13 +113,17 @@
 				$form.find("#packageId").append('<option value="">=Select Package=</option>');
 				// looping data
 				$.each(result, function(index, item){
-					$form.find("#packageId").append('<option value="'+ item.id +'">'+ item.code +' - '+ item.name +'</option>');
+					if($selected == item.id){
+						$form.find("#packageId").append('<option value="'+ item.id +'" selected="selected">'+ item.code +' - '+ item.name +'</option>');
+					}else {
+						$form.find("#packageId").append('<option value="'+ item.id +'">'+ item.code +' - '+ item.name +'</option>');
+					}
 				});
 			}
 		});
 	}
 	
-	function loadCategory($form){
+	function loadCategory($form, $selected){
 		$.ajax({
 			// url ke api/product/
 			url:'${contextName}/api/category/',
@@ -133,7 +136,11 @@
 				$form.find("#categoryId").append('<option value="">=Select Category=</option>');
 				// looping data
 				$.each(result, function(index, category){
-					$form.find("#categoryId").append('<option value="'+ category.id +'">'+ category.code +' - '+ category.name +'</option>');
+					if($selected==category.id){
+						$form.find("#categoryId").append('<option value="'+ category.id +'" selected="selected">'+ category.code +' - '+ category.name +'</option>');	
+					}else{
+						$form.find("#categoryId").append('<option value="'+ category.id +'">'+ category.code +' - '+ category.name +'</option>');
+					}
 				});
 			}
 		});
@@ -177,7 +184,14 @@
 				$('#modal-data').find('#id').val(dataApi.id);
 				$('#modal-data').find('#code').val(dataApi.code);
 				$('#modal-data').find('#name').val(dataApi.name);
+				$('#modal-data').find('#packageId').val(dataApi.packageId);
+				$('#modal-data').find('#categoryId').val(dataApi.categoryId);
+				$('#modal-data').find('#price').val(dataApi.price);
 				
+				// call add category
+				loadCategory($("#modal-data"), dataApi.categoryId);				
+				// call add category
+				loadPackage($("#modal-data"), dataApi.packageId);
 				console.log(dataApi);
 			}
 		});
@@ -192,7 +206,7 @@
 			dataType:'html',
 			success : function(result){
 				//mengganti judul modal
-				$("#modal-title").html("Edit Data Category");
+				$("#modal-title").html("Edit Data Product");
 				//mengisi content dengan variable result
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
@@ -237,12 +251,12 @@
 			dataType:'html',
 			success : function(result){
 				//mengganti judul modal
-				$("#modal-title").html("Detail Data Category");
+				$("#modal-title").html("Detail Data Product");
 				//mengisi content dengan variable result
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
 				$("#modal-form").modal('show');
-				//panggil method
+				// panggil method getData
 				getData(vid);
 			}
 		});
@@ -257,12 +271,12 @@
 			dataType:'html',
 			success : function(result){
 				//mengganti judul modal
-				$("#modal-title").html("Delete Data Category");
+				$("#modal-title").html("Delete Data Product");
 				//mengisi content dengan variable result
 				$("#modal-data").html(result);
 				//menampilkan modal pop up
 				$("#modal-form").modal('show');
-				//panggil method
+				// panggil method getData
 				getData(vid);
 			}
 		});
