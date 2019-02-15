@@ -27,7 +27,7 @@
 	<div class="form-group">
 		<label class="control-label col-md-2">Package</label>
 		<div class="col-md-10">
-			<select name="packageId" class="form-control" id="packageId">
+			<select name="packageId" class="form-control" id="packageId" readonly="readonly">
 				<option value="">=Select Package=</option>
 			</select>
 		</div>
@@ -36,7 +36,7 @@
 	<div class="form-group">
 		<label class="control-label col-md-2">Category</label>
 		<div class="col-md-10">
-			<select name="categoryId" class="form-control" id="categoryId">
+			<select name="categoryId" class="form-control" id="categoryId" readonly="readonly">
 				<option value="">=Select Package=</option>
 			</select>
 		</div>
@@ -45,7 +45,7 @@
 	<div class="form-group">
 		<label class="control-label col-md-2">Price</label>
 		<div class="col-md-10">
-			<input type="text" class="form-control" name="price" id="price" />
+			<input type="text" class="form-control" name="price" id="price" readonly="readonly" />
 		</div>
 	</div>
 	<div class="modal-footer">
