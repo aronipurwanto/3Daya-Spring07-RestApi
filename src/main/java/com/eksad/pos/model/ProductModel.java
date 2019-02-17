@@ -1,7 +1,9 @@
 package com.eksad.pos.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,12 +12,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="product")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id", scope=ProductModel.class)
 public class ProductModel {
 	@Id
 	@Column(name = "id", columnDefinition = "serial")
@@ -38,12 +43,13 @@ public class ProductModel {
 	@Column(name="price")
 	private Integer price;
 	
-	@ManyToOne
+	@ManyToOne	
 	@JoinColumn(name="category_id", updatable=false, insertable=false)
 	private CategoryModel category;
 	
-	@ManyToOne
-	@JoinColumn(name="package_id", updatable=false, insertable=false)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@JoinColumn(name="package_id", referencedColumnName="id", updatable=false, insertable=false)
+	@JsonManagedReference
 	private PackageModel packages;
 
 	public Integer getId() {
