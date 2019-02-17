@@ -11,4 +11,5 @@ public interface PoDetailDao {
 	public void insert(PoDetailModel model);
 	public void update(PoDetailModel model);
 	public void delete(PoDetailModel model);
+	public void delete(Integer poId);
 }

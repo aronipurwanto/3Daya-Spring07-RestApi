@@ -66,4 +66,13 @@ public class PoDetailDaoImpl implements PoDetailDao {
 		return query.getResultList();
 	}
 
+	@Override
+	public void delete(Integer poId) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "delete from PoDetailModel where poId=:poId";
+		Query query = session.createQuery(hql);
+		query.setParameter("poId", poId);
+		int result = query.executeUpdate();
+	}
+
 }

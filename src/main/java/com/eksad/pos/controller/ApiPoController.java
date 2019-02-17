@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.eksad.pos.model.PoModel;
+import com.eksad.pos.model.PoPojo;
 import com.eksad.pos.service.PoService;
 
 @Controller
@@ -62,27 +63,27 @@ public class ApiPoController {
 	}
 	
 	@RequestMapping(value="/api/po/", method=RequestMethod.POST)
-	public ResponseEntity<PoModel> postInsert(@RequestBody PoModel item){
-		ResponseEntity<PoModel> result = null;
+	public ResponseEntity<PoPojo> postInsert(@RequestBody PoPojo item){
+		ResponseEntity<PoPojo> result = null;
 		try {
 			this.service.insert(item);
-			result = new ResponseEntity<PoModel>(item, HttpStatus.CREATED);
+			result = new ResponseEntity<PoPojo>(item, HttpStatus.CREATED);
 		} catch (Exception e) {
 			log.debug(e.getMessage(),e);
-			result = new ResponseEntity<PoModel>(HttpStatus.INTERNAL_SERVER_ERROR);
+			result = new ResponseEntity<PoPojo>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return result;
 	}
 	
 	@RequestMapping(value="/api/po/", method=RequestMethod.PUT)
-	public ResponseEntity<PoModel> putUpdate(@RequestBody PoModel item){
-		ResponseEntity<PoModel> result = null;
+	public ResponseEntity<PoPojo> putUpdate(@RequestBody PoPojo item){
+		ResponseEntity<PoPojo> result = null;
 		try {
 			this.service.update(item);
-			result = new ResponseEntity<PoModel>(item, HttpStatus.ACCEPTED);
+			result = new ResponseEntity<PoPojo>(item, HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			log.debug(e.getMessage(),e);
-			result = new ResponseEntity<PoModel>(HttpStatus.INTERNAL_SERVER_ERROR);
+			result = new ResponseEntity<PoPojo>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return result;
 	}
