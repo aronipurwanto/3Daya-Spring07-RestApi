@@ -33,7 +33,7 @@ public class PoModel {
 	private Integer supplierId;
 	
 	@Column(name="total_amount")
-	private String totalAmount;
+	private Integer totalAmount;
 
 	public Integer getId() {
 		return id;
@@ -82,11 +82,11 @@ public class PoModel {
 		this.supplierId = supplierId;
 	}
 
-	public String getTotalAmount() {
+	public Integer getTotalAmount() {
 		return totalAmount;
 	}
 
-	public void setTotalAmount(String totalAmount) {
+	public void setTotalAmount(Integer totalAmount) {
 		this.totalAmount = totalAmount;
 	}	
 }

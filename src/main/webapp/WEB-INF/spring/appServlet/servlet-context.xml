@@ -20,11 +20,11 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<mvc:cors>
+	<!-- mvc:cors>
 		<mvc:mapping path="/api/**" allowed-origins="http://localhost"
 			allowed-methods="GET, PUT, POST, DELETE" allow-credentials="false"
 			max-age="123" />
-	</mvc:cors>
+	</mvc:cors-->
 
 	<mvc:annotation-driven>
         <mvc:message-converters>

@@ -23,7 +23,7 @@ public class PoDaoImpl implements PoDao {
 		Session session = sessionFactory.getCurrentSession();
 		// HQl => Hibernate Query language
 		// Hibernate => ORM ( Object Relation Mapping )
-		String hql = "select jt from PoModel jt order by jt.code";
+		String hql = "select jt from PoModel jt order by jt.poNumber";
 		Query query = session.createQuery(hql);
 		List<PoModel> result = query.getResultList();
 		return result;
@@ -60,7 +60,7 @@ public class PoDaoImpl implements PoDao {
 	@Override
 	public List<PoModel> search(String key) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select x from PoModel x where x.name like :keySearch order by x.code";
+		String hql = "select x from PoModel x where x.poNumber like :keySearch order by x.poNumber";
 		Query query = session.createQuery(hql);
 		query.setParameter("keySearch", "%"+key+"%");		
 		return query.getResultList();

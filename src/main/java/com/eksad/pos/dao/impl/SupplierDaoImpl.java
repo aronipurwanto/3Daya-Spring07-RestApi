@@ -23,7 +23,7 @@ public class SupplierDaoImpl implements SupplierDao {
 		Session session = sessionFactory.getCurrentSession();
 		// HQl => Hibernate Query language
 		// Hibernate => ORM ( Object Relation Mapping )
-		String hql = "select jt from SupplierModel jt order by jt.code";
+		String hql = "select x from SupplierModel x order by x.name";
 		Query query = session.createQuery(hql);
 		List<SupplierModel> result = query.getResultList();
 		return result;
@@ -32,7 +32,7 @@ public class SupplierDaoImpl implements SupplierDao {
 	@Override
 	public SupplierModel getById(Integer id) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select jt from SupplierModel jt where jt.id=:id";
+		String hql = "select x from SupplierModel x where x.id=:id";
 		Query query = session.createQuery(hql);
 		query.setParameter("id", id);
 		SupplierModel result = (SupplierModel)query.getSingleResult();
@@ -60,7 +60,7 @@ public class SupplierDaoImpl implements SupplierDao {
 	@Override
 	public List<SupplierModel> search(String key) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select x from SupplierModel x where x.name like :keySearch order by x.code";
+		String hql = "select x from SupplierModel x where x.name like :keySearch order by x.name";
 		Query query = session.createQuery(hql);
 		query.setParameter("keySearch", "%"+key+"%");		
 		return query.getResultList();
