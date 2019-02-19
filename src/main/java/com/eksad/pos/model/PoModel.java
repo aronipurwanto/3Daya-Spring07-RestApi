@@ -5,11 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="purchase_order")
@@ -24,6 +29,7 @@ public class PoModel {
 	private String poNumber;
 	
 	@Column(name="purchase_date")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	private Date poDate;
 	
 	@Column(name="notes")
@@ -34,6 +40,10 @@ public class PoModel {
 	
 	@Column(name="total_amount")
 	private Integer totalAmount;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="supplier_id", updatable=false, insertable=false, nullable=false)
+	private SupplierModel supplier;
 
 	public Integer getId() {
 		return id;
@@ -88,5 +98,13 @@ public class PoModel {
 
 	public void setTotalAmount(Integer totalAmount) {
 		this.totalAmount = totalAmount;
-	}	
+	}
+
+	public SupplierModel getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(SupplierModel supplier) {
+		this.supplier = supplier;
+	}
 }

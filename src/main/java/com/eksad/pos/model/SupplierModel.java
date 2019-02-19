@@ -1,10 +1,13 @@
 package com.eksad.pos.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -31,6 +34,9 @@ public class SupplierModel {
 	
 	@Column(name="email")
 	private String email;
+	
+	@OneToMany(mappedBy="supplier")
+	private List<PoModel> listPo;
 
 	public Integer getId() {
 		return id;
@@ -78,5 +84,13 @@ public class SupplierModel {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<PoModel> getListPo() {
+		return listPo;
+	}
+
+	public void setListPo(List<PoModel> listPo) {
+		this.listPo = listPo;
 	}
 }

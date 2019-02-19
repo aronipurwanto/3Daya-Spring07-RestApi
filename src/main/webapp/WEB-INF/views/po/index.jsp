@@ -12,8 +12,11 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Kode</th>
-					<th>Name</th>
+					<th>No PO</th>
+					<th>Tgl PO</th>
+					<th>Supplier</th>
+					<th>Notes</th>
+					<th>Total Amount</th>
 					<th>#</th>
 				</tr>
 			</thead>
@@ -73,8 +76,11 @@
 				// looping data dengan jQuery
 				$.each(result, function(index, item){
 					var dataRow ='<tr>'+
-						'<td>'+ item.code +'</td>'+
-						'<td>'+ item.name+'</td>'+
+						'<td>'+ item.poNumber +'</td>'+
+						'<td>'+ item.poDate+'</td>'+
+						'<td>'+ item.supplier.name+'</td>'+
+						'<td>'+ item.notes+'</td>'+
+						'<td>'+ item.totalAmount+'</td>'+
 						'<td class="col-md-1">'+
 							'<button type="button" class="btn btn-edit btn-warning btn-xs" value="'+ item.id +'"><i class="fa fa-edit"></i></button> '+
 							'<button type="button" class="btn btn-detail btn-success btn-xs" value="'+ item.id +'"><i class="fa fa-eye"></i></button> '+
