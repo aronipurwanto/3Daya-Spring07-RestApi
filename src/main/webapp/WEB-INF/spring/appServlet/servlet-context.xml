@@ -20,22 +20,24 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<!-- mvc:cors>
-		<mvc:mapping path="/api/**" allowed-origins="http://localhost"
-			allowed-methods="GET, PUT, POST, DELETE" allow-credentials="false"
-			max-age="123" />
-	</mvc:cors-->
+	<!-- mvc:cors> <mvc:mapping path="/api/**" allowed-origins="http://localhost" 
+		allowed-methods="GET, PUT, POST, DELETE" allow-credentials="false" max-age="123" 
+		/> </mvc:cors -->
 
 	<mvc:annotation-driven>
-        <mvc:message-converters>
-            <!-- Use the HibernateAware mapper instead of the default -->
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-                <property name="objectMapper">
-                    <bean class="com.eksad.mapper.HibernateAwareObjectMapper" />
-                </property>
-            </bean>
-        </mvc:message-converters>
-    </mvc:annotation-driven>
+		<mvc:message-converters>
+			<!-- Use the HibernateAware mapper instead of the default -->
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper">
+					<bean class="com.eksad.mapper.HibernateAwareObjectMapper" />
+				</property>
+			</bean>
+			<!-- bean class="com.eksad.mapper.MappingJackson2HttpMessageConverter"> 
+				<property name="objectMapper"> <bean class="com.eksad.mapper.HibernateAwareObjectMapper" 
+				/> </property> </bean -->
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->

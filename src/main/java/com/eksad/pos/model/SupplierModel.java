@@ -11,8 +11,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="supplier")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id", scope=SupplierModel.class)
 public class SupplierModel {
 	@Id
 	@Column(name = "id", columnDefinition = "serial")
@@ -35,6 +40,7 @@ public class SupplierModel {
 	@Column(name="email")
 	private String email;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="supplier")
 	private List<PoModel> listPo;
 

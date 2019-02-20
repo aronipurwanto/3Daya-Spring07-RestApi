@@ -8,19 +8,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.eksad.pos.model.ProductModel;
 import com.eksad.pos.service.ProductService;
 
-@Controller
+@RestController
 public class ApiProductController {
 	private Log log = LogFactory.getLog(getClass());
 	@Autowired
 	private ProductService service;
+	
+	@GetMapping(value="/api/product/all")
+	public List<ProductModel> getAll(){
+		return this.service.getList();
+	}
 	
 	@RequestMapping(value="/api/product/", method=RequestMethod.GET)
 	public ResponseEntity<List<ProductModel>> list(){
