@@ -1,14 +1,20 @@
 <% request.setAttribute("contextName", request.getServletContext().getContextPath()); %>
 <div class="box box-info">
-	<div class="box-header">
+	<div class="box-header with-border">
 		<h3 class="box-title">PO List</h3>
-		<div class="box-tools">
-			<a href="${contextName}/new-po" id="btn-add" class="btn btn-success btn-sm">
-				<i class="fa fa-plus"></i>
-			</a>
-		</div>
 	</div>
 	<div class="box-body">
+		<div class="row">
+			<div class="col-md-3">
+				<input type="text" class="form-control"/>
+			</div>
+			<div class="col-md-2 col-md-offset-7">				
+				<button type="button" class="btn btn-info btn-sm">Export</button>
+				<a href="${contextName}/new-po" id="btn-add" class="btn btn-success btn-sm">
+					<i class="fa fa-plus"></i> Add
+				</a>
+			</div>
+		</div>
 		<table class="table">
 			<thead>
 				<tr>
